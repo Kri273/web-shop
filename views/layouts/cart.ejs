@@ -1,0 +1,13 @@
+<h1>Your Shopping Cart</h1>
+<ul>
+    <% cart.forEach(item => { %>
+        <li>
+            <%= item.name %> - $<%= item.price %> (Qty: <%= item.qty %>)
+            <form action="/cart/remove-from-cart" method="POST">
+                <input type="hidden" name="id" value="<%= item.id %>">
+                <button type="submit">Remove</button>
+            </form>
+        </li>
+    <% }) %>
+</ul>
+<a href="/">Continue Shopping</a>
