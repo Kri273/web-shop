@@ -27,7 +27,7 @@ const getJustProducts = async (req, res) => {
 };
 
 const getProductDetails = async (req, res) => {
-    const productId = req.params.productId; // võtame ID URL-ist
+    const productId = req.params.productId;
     try {
         const [product] = await db.execute('SELECT * FROM products WHERE id = ?', [productId]);
         if (product.length === 0) {
