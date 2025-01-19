@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Edit Product</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fa;
+        margin: 0;
+        padding: 0;
+      }
+
+      .edit-product {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .edit-product h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 5px;
+        margin-top: 15px;
+      }
+
+      input,
+      textarea {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        width: auto;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+        width: auto;
+      }
+
+      button {
+        background-color: #2a9d8f;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #21867a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- include('./layouts/navbar.ejs'); %>
+    <div class="edit-product">
+      <h1>Edit Product</h1>
+      <form action="/admin/edit-product" method="POST">
+        <input type="hidden" name="id" value="<%= product.id %>" />
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value="<%= product.title %>"
+          required
+        />
+
+        <label for="imageUrl">Image URL</label>
+        <input
+          type="text"
+          id="imageUrl"
+          name="imageUrl"
+          value="<%= product.imageUrl %>"
+          required
+        />
+
+        <label for="price">Price</label>
+        <input
+          type="number"
+          step=".01"
+          id="price"
+          name="price"
+          value="<%= product.price %>"
+          required
+        />
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" required>
+<%= product.description %></textarea
+        >
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </body>
+</html>
