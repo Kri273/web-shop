@@ -31,10 +31,11 @@
 
                             <form action="/cart/add-to-cart" method="POST">
                                 <input type="hidden" name="id" value="<%= product.id %>">
-                                <input type="hidden" name="name" value="<%= product.name %>">
+                                <input type="hidden" name="title" value="<%= product.title %>">
                                 <input type="hidden" name="price" value="<%= product.price %>">
                                 <button type="submit" class="product-button">Add to Cart</button>
                             </form>
+                            
                         </div>
                     <% }) %>
                 <% } else { %>

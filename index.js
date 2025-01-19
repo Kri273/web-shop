@@ -1,8 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path')
+const session = require('express-session');
 
 const app = express();
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
@@ -27,9 +34,14 @@ app.get('/', (req, res) => {
   res.render('index', {name: 'yes'}); 
 });
 
+app.get('/', (req, res) => {
+  res.render('index', { currentPage: 'shop', name: 'yes' });
+});
+
 
 app.use('/admin', adminRoutes);
-app.use(shopRoutes)
+app.use('/', shopRoutes)
+app.use('/cart', cartRoutes);
 
 app.use((req, res, next) => {
     res.status(404).render('404')

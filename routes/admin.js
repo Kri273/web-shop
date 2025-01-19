@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", adminController.getAdminProducts);
 router.get('/add-product', (req, res) => {
-    res.render('add-product'); 
+    res.render('add-product', { currentPage: 'add-product' }); 
 });
 router.get('/edit-product/:id', adminController.getEditProduct);
 

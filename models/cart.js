@@ -1,23 +1,32 @@
 const cart = [];
 
 module.exports = class Cart {
-    static addProduct(id, name, price) {
-        const existingProductIndex = cart.findIndex(prod => prod.id === id);
+    static addProduct(sessionId, productId, title, price) {
+        if (!sessionId.cart) {
+            sessionId.cart = [];
+        }
+        const existingProductIndex = sessionId.cart.findIndex(prod => prod.id === productId);
         if (existingProductIndex >= 0) {
-            cart[existingProductIndex].qty++;
+            sessionId.cart[existingProductIndex].qty++;
         } else {
-            cart.push({ id, name, price, qty: 1 });
+            sessionId.cart.push({ id: productId, title, price, qty: 1 });
         }
     }
 
-    static getCart() {
-        return cart;
+    static getCart(sessionId) {
+        return sessionId.cart || [];
     }
 
-    static removeProduct(id) {
-        const index = cart.findIndex(prod => prod.id === id);
-        if (index >= 0) {
-            cart.splice(index, 1);
+    static removeProduct(sessionId, productId) {
+        if (!sessionId.cart) return;
+
+        const existingProductIndex = sessionId.cart.findIndex(prod => prod.id === productId);
+        if (existingProductIndex >= 0) {
+            if (sessionId.cart[existingProductIndex].qty > 1) {
+                sessionId.cart[existingProductIndex].qty--;
+            } else {
+                sessionId.cart.splice(existingProductIndex, 1);
+            }
         }
     }
 };

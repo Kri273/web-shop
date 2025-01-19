@@ -42,4 +42,9 @@ const getProductDetails = async (req, res) => {
     }
 };
 
+exports.getShop = (req, res) => {
+    const products = Product.fetchAll();
+    res.render('shop', { products: products, currentPage: 'shop' });
+};
+
 module.exports = { getProducts, getJustProducts, getProductDetails };
