@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= product.title %> Details</title>
+</head>
+
+<style>
+    h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+    img {
+        width: 600px ;
+        height: auto ; 
+        display: block; 
+        margin: 0 auto; 
+    }
+
+    p {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+</style>
+
+<body>
+    <%- include('./layouts/navbar.ejs'); %>
+
+    <div>
+        <h1><%= product.title %></h1>
+        <hr>
+        <img src="<%= product.imageUrl %>" alt="Product Image">
+        <p><%= product.description %></p>
+        <p><%= product.price %> €</p>
+    </div>
+</body>
+
+</html>
